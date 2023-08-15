@@ -48,23 +48,18 @@ locationForm.addEventListener("submit", (event) => {
   displayData(locationQuery);
 });
 
-/* Makes api call to get the weather from a specific ip address */
+/* Makes api call to get the weather from a specific location */
 async function getWeather(locationQuery) {
   let res;
   try {
     res = await fetch(
-      `https://api.weatherapi.com/v1/current.json?q=${locationQuery}`,
-      {
-        headers: {
-          key: "03684ae6e20549df9d4190834230208",
-        },
-      }
+      `https://weatherapiproxy.onrender.com?locationQuery=${locationQuery}`
     );
   } catch (error) {
     alert();
-    locationForm.style.display = 'block';
-    document.getElementById("error").style.display = 'block'
-    throw error; 
+    locationForm.style.display = "block";
+    document.getElementById("error").style.display = "block";
+    throw error;
   }
   return res.json();
 }
