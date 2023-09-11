@@ -11032,3 +11032,29 @@ p {
   margin-top: -2rem;
   max-height: 80%
 }
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%; /* Position above the button */
+  left: 50%; 
+  transform: translateX(-50%); /* Center it */
+  background-color: #333; /* Dark background */
+  color: #fff; /* White text */
+  padding: 5px 10px; /* Some padding */
+  border-radius: 4px; /* Rounded corners */
+  white-space: nowrap; /* Prevent text from wrapping */
+  opacity: 0; /* Start off hidden */
+  pointer-events: none; /* Ignore mouse events so it doesn't interfere with button */
+  transition: opacity 0.2s; /* Optional: fade effect */
+  margin-bottom: 5px; /* Space between button and tooltip */
+  z-index: 1; /* Ensure it appears on top */
+}
+
+.tooltip-container:hover .tooltip {
+  opacity: 1; /* Show the tooltip when container is hovered */
+}
