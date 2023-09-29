@@ -10994,7 +10994,7 @@ p {
   .product-item .product-item-img {
     position: relative;
     z-index: 0;
-    max-width: 60vw;
+    max-width: 50vw;
   }
   .product-item .product-item-description {
     position: relative;
@@ -11003,7 +11003,11 @@ p {
     max-width: 50vw;
   }
 }
-
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 .list-hours {
   font-size: 0.9rem;
 }
@@ -11058,3 +11062,9 @@ p {
 .tooltip-container:hover .tooltip {
   opacity: 1; /* Show the tooltip when container is hovered */
 }
+
+
+/* #glimage {
+  background:
+  url(/staticGlizzy/assets/img/gotThatDogInEm.png) center/cover;
+} */

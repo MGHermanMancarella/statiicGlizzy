@@ -1,6 +1,7 @@
 "use strict";
 const locationForm = document.getElementById("locationForm");
 const glizzyResponse = document.getElementById("glizzyResponse");
+const chatBox = document.getElementById("chatbox")
 
 /*!
  * Start Bootstrap - Business Casual v7.0.9 (https://startbootstrap.com/theme/business-casual)
@@ -56,7 +57,6 @@ async function getWeather(locationQuery) {
       `https://weatherapiproxy.onrender.com?locationQuery=${locationQuery}`
     );
   } catch (error) {
-    alert();
     locationForm.style.display = "block";
     document.getElementById("error").style.display = "block";
     throw error;
@@ -104,7 +104,7 @@ async function displayData(locationQuery) {
   }
   if (
     response.current.is_day === 1 &&
-    response.current.condition.text.includes("sun")
+    response.current.condition.text.includes("Sunny")
   ) {
     glizzyResponse.innerText = "Suns out Buns out" + " " + hotResponse;
   }
@@ -143,5 +143,29 @@ function showError(error) {
       case error.UNKNOWN_ERROR:
           document.getElementById("demo").innerHTML = "An unknown error occurred.";
           break;
+  }
+}
+
+/////////////////////Chatbot////////////////////////
+
+async function chat(prompt) {
+  let res;
+  try {
+    res = await fetch(
+      `https://weatherapiproxy.onrender.com/chat?`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({prompt: encodeURIComponent(prompt)})
+      }
+    );
+  } catch (error) {
+    chatBox.innerText = chatBox.innerText + error
+  }
+  if (res.ok) {
+    return res.json();
+  } else {
+    console.log("network response error")
   }
 }
