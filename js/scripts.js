@@ -259,6 +259,7 @@ function createOutgoingMessageHTML(message) {
 
   // Append the main div to the body or another container element
   chatBox.appendChild(outgoingChatsDiv);
+  console.log(outgoingChatsDiv)
 }
 
 createOutgoingMessageHTML("Whats Up!?");
