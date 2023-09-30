@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="./css/styles.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -37,29 +38,138 @@
                     <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.html">About</a></li>
                     <li class="nav-item px-lg-3"><a class="nav-link text-uppercase" href="HereBeGlizzies.html">Here Be
                             Glizzies</a></li>
-                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="glizzy_bot.html">Glizzy Chat</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="glizzy_bot.html">Glizzy
+                            Chat</a></li>
                     <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store.html">Store</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
     <div class="container">
         <div class="product-item">
             <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex m-auto rounded container-fluid" id="glimage">
-                    
+                <div class="bg-faded p-5 d-flex m-auto rounded" id="glimage">
                     <h2 class="section-heading mb-0 ">
+
+                        <div class="container">
+                            <!-- msg-header section starts -->
+                            <!-- <div class="msg-header">
+                                <div class="container1">
+                                    <img src="./assets/img/chat/Chimkin.png" class="msgimg" />
+                                    <div class="active">
+                                        <p>User </p>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- msg-header section ends -->
+
+                            <!-- Chat inbox  -->
+                            <div class="chat-page">
+                                <div class="msg-inbox">
+                                    <div class="chats">
+                                        <!-- Message container -->
+                                        <div class="msg-page" id="msg-page">
+                                            <!-- Incoming messages -->
+
+                                            <div class="received-chats">
+                                                <div class="received-chats-img">
+                                                    <img src="./assets/img/chat/Dawg.png" />
+                                                </div>
+                                                <div class="received-msg">
+                                                    <div class="received-msg-inbox">
+                                                        <p>
+                                                            Hi !! This is message from Riya . Lorem ipsum, dolor sit
+                                                            amet consectetur adipisicing elit. Non quas nemo eum,
+                                                            earum sunt, nobis similique quisquam eveniet pariatur
+                                                            commodi modi voluptatibus iusto omnis harum illum iste
+                                                            distinctio expedita illo!
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Outgoing messages -->
+                                            <div class="outgoing-chats">
+                                                <div class="outgoing-chats-img">
+                                                    <img src="./assets/img/chat/Chimkin.png" />
+                                                </div>
+                                                <div class="outgoing-msg">
+                                                    <div class="outgoing-chats-msg">
+                                                        <p class="multi-msg">
+                                                            Hi riya , Lorem ipsum dolor sit amet consectetur
+                                                            adipisicing elit. Illo nobis deleniti earum magni
+                                                            recusandae assumenda.
+                                                        </p>
+                                                        <p class="multi-msg">
+                                                            Lorem ipsum dolor sit amet consectetur.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="received-chats">
+                                                <div class="received-chats-img">
+                                                    <img src="user2.png" />
+                                                </div>
+                                                <div class="received-msg">
+                                                    <div class="received-msg-inbox">
+                                                        <p class="single-msg">
+                                                            Hi !! This is message from John Lewis. Lorem ipsum, dolor
+                                                            sit amet consectetur adipisicing elit. iste distinctio
+                                                            expedita illo!
+                                                        </p>
+                                                        <span class="time">18:31 PM | July 24</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="outgoing-chats">
+                                                <div class="outgoing-chats-img">
+                                                    <img src="user1.png" />
+                                                </div>
+                                                <div class="outgoing-msg">
+                                                    <div class="outgoing-chats-msg">
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                            Velit, sequi.
+                                                        </p>
+
+                                                        <span class="time">18:34 PM | July 24</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- msg-bottom section -->
+
+                                    <div class="msg-bottom">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Write message..." />
+
+                                            <span class="input-group-text send-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <form id="chatForm" method="POST" action="/chat">
                             <div class="form-group">
                                 <label class="section-heading-upper">Lonely? Chat with our bespoke glizzy bot!</label>
-                                <input type="text" class="form-control" id="locationQuery"
-                                    placeholder="">
+                                <input type="text" class="form-control" id="locationQuery" placeholder="">
                             </div>
                             <input type="submit" value="Send" class="btn btn-info btn-block">
                             <div class="tooltip-container">
-                            <p id="demo"></p>
+                                <p id="demo"></p>
                         </form>
+
+
                         <div style="display: none" class="section-heading-upper" id="error">Uh Oh! Something went wrong
                             and we couldn't fetch data the correctly. Please Try again
                         </div>
@@ -69,7 +179,7 @@
                     </h2>
                 </div>
             </div>
-            
+
             <div class="product-item-description d-flex m-auto">
                 <div id="glizzyLand" style="display: none" class="bg-faded p-5 rounded">
                     <p class="mb-0" id="glizzySituation"></p>

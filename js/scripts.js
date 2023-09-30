@@ -1,7 +1,7 @@
 "use strict";
-const locationForm = document.getElementById("locationForm");
+
 const glizzyResponse = document.getElementById("glizzyResponse");
-const chatBox = document.getElementById("chatbox")
+let chatBox = document.getElementById("msg-page");
 
 /*!
  * Start Bootstrap - Business Casual v7.0.9 (https://startbootstrap.com/theme/business-casual)
@@ -35,19 +35,19 @@ const chatBox = document.getElementById("chatbox")
  * - city name
  *
  */
-locationForm.addEventListener("submit", (event) => {
-  // Prevent the default form submission behavior
-  event.preventDefault();
+// locationForm.addEventListener("submit", (event) => {
+//   // Prevent the default form submission behavior
+//   event.preventDefault();
 
-  // Get the location query from the input field
-  const locationQuery = document.getElementById("locationQuery").value;
+//   // Get the location query from the input field
+//   const locationQuery = document.getElementById("locationQuery").value;
 
-  // Hide the form
-  document.getElementById("locationForm").style.display = "none";
+//   // Hide the form
+//   document.getElementById("locationForm").style.display = "none";
 
-  // Send a GET request to the API
-  displayData(locationQuery);
-});
+//   // Send a GET request to the API
+//   displayData(locationQuery);
+// });
 
 /* Makes api call to get the weather from a specific location */
 async function getWeather(locationQuery) {
@@ -113,59 +113,152 @@ async function displayData(locationQuery) {
   }
 }
 
-
 /* Get user location*/
 function getLocation() {
   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
   } else {
-      document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+    document.getElementById("demo").innerHTML =
+      "Geolocation is not supported by this browser.";
   }
 }
 
 function showPosition(position) {
-  document.getElementById("demo").innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
+  document.getElementById("demo").innerHTML =
+    "Latitude: " +
+    position.coords.latitude +
+    "<br>Longitude: " +
+    position.coords.longitude;
 }
 
 // Location errors
 function showError(error) {
-  switch(error.code) {
-      case error.PERMISSION_DENIED:
-          document.getElementById("demo").innerHTML = "User denied the request for Geolocation.";
-          break;
-      case error.POSITION_UNAVAILABLE:
-          document.getElementById("demo").innerHTML = "Location information is unavailable.";
-          break;
-      case error.TIMEOUT:
-          document.getElementById("demo").innerHTML = "The request to get user location timed out.";
-          break;
-      case error.UNKNOWN_ERROR:
-          document.getElementById("demo").innerHTML = "An unknown error occurred.";
-          break;
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      document.getElementById("demo").innerHTML =
+        "User denied the request for Geolocation.";
+      break;
+    case error.POSITION_UNAVAILABLE:
+      document.getElementById("demo").innerHTML =
+        "Location information is unavailable.";
+      break;
+    case error.TIMEOUT:
+      document.getElementById("demo").innerHTML =
+        "The request to get user location timed out.";
+      break;
+    case error.UNKNOWN_ERROR:
+      document.getElementById("demo").innerHTML = "An unknown error occurred.";
+      break;
   }
 }
 
 /////////////////////Chatbot////////////////////////
+console.log("chatbox ====", chatBox);
 
 async function chat(prompt) {
   let res;
   try {
-    res = await fetch(
-      `https://weatherapiproxy.onrender.com/chat?`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      body: JSON.stringify({prompt: encodeURIComponent(prompt)})
-      }
-    );
+    res = await fetch(`https://weatherapiproxy.onrender.com/chat?`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt: encodeURIComponent(prompt) }),
+    });
   } catch (error) {
-    chatBox.innerText = chatBox.innerText + error
+    chatBox.innerText = chatBox.innerText + error;
   }
   if (res.ok) {
     return res.json();
   } else {
-    console.log("network response error")
+    console.log("network response error");
   }
 }
+
+// Create a function to encapsulate the code
+function createResponseMessageHTML(message) {
+  // Create the main div element
+  let receivedChatsDiv = document.createElement("div");
+  receivedChatsDiv.className = "received-chats";
+
+  // Create the image div element
+  let imageDiv = document.createElement("div");
+  imageDiv.className = "received-chats-img";
+
+  // Create the image element
+  let image = document.createElement("img");
+  image.src = "./assets/img/chat/Dawg.png";
+
+  // Append the image to the image div
+  imageDiv.appendChild(image);
+
+  // Create the message div element
+  let messageDiv = document.createElement("div");
+  messageDiv.className = "received-msg";
+
+  // Create the inbox div element
+  let inboxDiv = document.createElement("div");
+  inboxDiv.className = "received-msg-inbox";
+
+  // Create the paragraph element
+  let paragraph = document.createElement("p");
+  paragraph.textContent = message; // Set the message text
+
+  // Append the paragraph to the inbox div
+  inboxDiv.appendChild(paragraph);
+
+  // Append the inbox div to the message div
+  messageDiv.appendChild(inboxDiv);
+
+  // Append the image div and message div to the main div
+  receivedChatsDiv.appendChild(imageDiv);
+  receivedChatsDiv.appendChild(messageDiv);
+
+  // Append the main div to the body or another container element
+  console.log(receivedChatsDiv);
+  chatBox.appendChild(receivedChatsDiv);
+}
+
+createResponseMessageHTML("WHAT IT IS THO");
+
+function createOutgoingMessageHTML(message) {
+  // Create the main div element
+  let outgoingChatsDiv = document.createElement("div");
+  outgoingChatsDiv.className = "outgoing-chats";
+
+  // Create the image div element
+  let imageDiv = document.createElement("div");
+  imageDiv.className = "outgoing-chats-img";
+
+  // Create the image element
+  let image = document.createElement("img");
+  image.src = "./assets/img/chat/Chimkin.png";
+
+  // Append the image to the image div
+  imageDiv.appendChild(image);
+
+  // Create the message div element
+  let messageDiv = document.createElement("div");
+  messageDiv.className = "outgoing-msg";
+
+  // Create the message content div element
+  let msgContentDiv = document.createElement("div");
+  msgContentDiv.className = "outgoing-chats-msg";
+
+  // Loop through the messages array and create a paragraph for each message
+  let paragraph = document.createElement("p");
+  paragraph.textContent = message; // Set the message text
+  msgContentDiv.appendChild(paragraph);
+
+  // Append the message content div to the message div
+  messageDiv.appendChild(msgContentDiv);
+
+  // Append the image div and message div to the main div
+  outgoingChatsDiv.appendChild(imageDiv);
+  outgoingChatsDiv.appendChild(messageDiv);
+
+  // Append the main div to the body or another container element
+  chatBox.appendChild(outgoingChatsDiv);
+}
+
+createOutgoingMessageHTML("Whats Up!?");
