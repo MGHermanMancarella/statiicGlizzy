@@ -161,9 +161,11 @@ document.querySelector('.send-icon').addEventListener('click', function() {
   console.log(message);  // Log the message to the console
   createOutgoingMessageHTML(message)
 
-  let resp = chat(message)
-  createResponseMessageHTML(resp)
-});
+  chat(message).then((resp) => {
+    console.log(resp.Glizzy_Bot);
+  createResponseMessageHTML(resp.Glizzy_Bot)}
+)
+})
 
 
 async function chat(prompt) {
