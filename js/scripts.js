@@ -54,7 +54,8 @@ async function getWeather(locationQuery) {
   let res;
   try {
     res = await fetch(
-      `https://weatherapiproxy.onrender.com?locationQuery=${locationQuery}`
+      // `https://weatherapiproxy.onrender.com?locationQuery=${locationQuery}`
+      `http://127.0.0.1:5001?locationQuery=${locationQuery}`
     );
   } catch (error) {
     locationForm.style.display = "block";
@@ -153,12 +154,23 @@ function showError(error) {
 }
 
 /////////////////////Chatbot////////////////////////
-console.log("chatbox ====", chatBox);
+
+// Assign a click event listener to the icon
+document.querySelector('.send-icon').addEventListener('click', function() {
+  let message = document.getElementById('prompt').value;
+  console.log(message);  // Log the message to the console
+  createOutgoingMessageHTML(message)
+
+  let resp = chat(message)
+  createResponseMessageHTML(resp)
+});
+
 
 async function chat(prompt) {
   let res;
   try {
-    res = await fetch(`https://weatherapiproxy.onrender.com/chat?`, {
+    // res = await fetch(`https://weatherapiproxy.onrender.com/chat?`, {
+      res = await fetch(`http://127.0.0.1:5001/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -219,7 +231,6 @@ function createResponseMessageHTML(message) {
   chatBox.appendChild(receivedChatsDiv);
 }
 
-createResponseMessageHTML("WHAT IT IS THO");
 
 function createOutgoingMessageHTML(message) {
   // Create the main div element
@@ -262,4 +273,3 @@ function createOutgoingMessageHTML(message) {
   console.log(outgoingChatsDiv)
 }
 
-createOutgoingMessageHTML("Whats Up!?");

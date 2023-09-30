@@ -676,7 +676,10 @@ progress {
   margin-right: auto;
   margin-left: auto;
 }
-
+#container {
+  justify-content: space-around;
+  
+}
 @media (min-width: 576px) {
   .container-sm,
   .container {
@@ -11494,19 +11497,21 @@ img {
 .msg-page {
   max-height: 40vh;
   overflow-y: auto;
+  min-width: 80vw;
 }
 
 /* Styling the msg-bottom container */
 .msg-bottom {
+  justify-content: center;
   border-top: 1px solid black;
   position: relative;
   height: 11%;
   background-color: rgb(239 239 239);
-
 }
+
 /* Styling the input field */
 .input-group {
-  float: right;
+  /* float: right; */
   margin-top: 13px;
   margin-right: 20px;
   outline: none !important;
@@ -11531,7 +11536,7 @@ img {
   border-radius: 20px !important;
   display: block;
   height: calc(2.25rem + 2px);
-  padding: 0.375rem 0.75rem;
+  /* padding: 0.375rem 0.75rem; */
   font-size: 1rem;
   line-height: 1.5;
   color: #495057;

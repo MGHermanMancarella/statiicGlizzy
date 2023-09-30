@@ -46,7 +46,7 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container d-flex" id="container">
         <div class="product-item">
             <div class="product-item-title d-flex">
                 <div class="bg-faded d-flex rounded" id="glimage">
@@ -70,77 +70,16 @@
                                     <div class="chats">
                                         <!-- Message container -->
                                         <div class="msg-page" id="msg-page">
+                                            
                                             <!-- Incoming messages -->
 
-                                            <div class="received-chats">
-                                                <div class="received-chats-img">
-                                                    <img src="./assets/img/chat/Dawg.png" />
-                                                </div>
-                                                <div class="received-msg">
-                                                    <div class="received-msg-inbox">
-                                                        <p>
-                                                            Hi !! This is message from Riya . Lorem ipsum, dolor sit
-                                                            amet consectetur adipisicing elit. Non quas nemo eum,
-                                                            earum sunt, nobis similique quisquam eveniet pariatur
-                                                            commodi modi voluptatibus iusto omnis harum illum iste
-                                                            distinctio expedita illo!
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Outgoing messages -->
-
-                                            <div class="outgoing-chats">
-                                                <div class="outgoing-chats-img">
-                                                    <img src="./assets/img/chat/Chimkin.png" />
-                                                </div>
-                                                <div class="outgoing-msg">
-                                                    <div class="outgoing-chats-msg">
-                                                        <p>
-                                                            Hi riya , Lorem ipsum dolor sit amet consectetur
-                                                            adipisicing elit. Illo nobis deleniti earum magni
-                                                            recusandae assumenda.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="received-chats">
-                                                <div class="received-chats-img">
-                                                    <img src="user2.png" />
-                                                </div>
-                                                <div class="received-msg">
-                                                    <div class="received-msg-inbox">
-                                                        <p class="single-msg">
-                                                            Hi !! This is message from John Lewis. Lorem ipsum, dolor
-                                                            sit amet consectetur adipisicing elit. iste distinctio
-                                                            expedita illo!
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="outgoing-chats">
-                                                <div class="outgoing-chats-img">
-                                                    <img src="user1.png" />
-                                                </div>
-                                                <div class="outgoing-msg">
-                                                    <div class="outgoing-chats-msg">
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                            Velit, sequi.
-                                                        </p>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            
 
                                     <!-- msg-bottom section -->
 
                                     <div class="msg-bottom">
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Write message..." />
+                                        <div class="input-group mb-3" >
+                                            <input type="text" class="form-control" placeholder="Write message..." id="prompt"/>
 
                                             <span class="input-group-text send-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
