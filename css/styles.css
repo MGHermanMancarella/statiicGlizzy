@@ -11511,11 +11511,12 @@ img {
 
 .chats {
   padding: 10px 15px 0 25px;
+  height: 80vh;
 }
 
 .msg-page {
-  max-height: 40vh;
   overflow-y: auto;
+  height: 80vh;
 }
 
 /* Styling the msg-bottom container */
@@ -11636,7 +11637,7 @@ p {
   flex-direction: row-reverse
 }
 
-.outgoing-msg-inbox p {
+.outgoing-chats-msg p {
   background-color: #3a12ff;
   background-image: linear-gradient(    45deg,    #e6a757 0%,    #7c462b 25%,    #faad14 50%,    #a10000 75%,    #76ff00 100%  
   );
@@ -11732,3 +11733,6 @@ p {
   }
 } */
 
+.hidden-important {
+  display: none !important;
+}

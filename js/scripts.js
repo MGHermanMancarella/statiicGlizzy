@@ -1,32 +1,16 @@
 "use strict";
 
 const glizzyResponse = document.getElementById("glizzyResponse");
-let chatBox = document.getElementById("msg-page");
-let prompt = document.getElementById("prompt")
+const sendIt = document.querySelector(".send-icon");
+const chatBox = document.getElementById("msg-page");
+const prompt = document.getElementById("prompt");
+const locationForm = document.getElementById("locationForm");
 
 /*!
  * Start Bootstrap - Business Casual v7.0.9 (https://startbootstrap.com/theme/business-casual)
  * Copyright 2013-2023 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-casual/blob/master/LICENSE)
  */
-// Highlights current date on contact page
-// window.addEventListener('DOMContentLoaded', event => {
-//     const listHoursArray = document.body.querySelectorAll('.list-hours li');
-//     listHoursArray[new Date().getDay()].classList.add(('today'));
-// })
-
-// Makes API call to get client's IP address NOTE: The ip tracker was too inaccurate
-// async function getIpLocation() {
-//   const res = await fetch("https://api.ipify.org?format=json");
-//   // The return value is *not* serialized
-//   // You can return Date, Map, Set, etc.
-
-//   if (!res.ok) {
-//     // This will activate the closest `error.js` Error Boundary
-//     throw new Error("Failed to fetch data");
-//   }
-//   return res.json();
-// }
 
 /** Add event listener to location form
  *
@@ -36,19 +20,21 @@ let prompt = document.getElementById("prompt")
  * - city name
  *
  */
-// locationForm.addEventListener("submit", (event) => {
-//   // Prevent the default form submission behavior
-//   event.preventDefault();
+if (locationForm) {
+  locationForm.addEventListener("submit", (event) => {
+    // Prevent the default form submission behavior
+    event.preventDefault();
 
-//   // Get the location query from the input field
-//   const locationQuery = document.getElementById("locationQuery").value;
+    // Get the location query from the input field
+    const locationQuery = document.getElementById("locationQuery").value;
 
-//   // Hide the form
-//   document.getElementById("locationForm").style.display = "none";
+    // Hide the form
+    locationForm.style.display = "none";
 
-//   // Send a GET request to the API
-//   displayData(locationQuery);
-// });
+    // Send a GET request to the API
+    displayData(locationQuery);
+  });
+}
 
 /* Makes api call to get the weather from a specific location */
 async function getWeather(locationQuery) {
@@ -71,7 +57,7 @@ async function displayData(locationQuery) {
   // Canned Responses:
   const coldResponse =
     "It seems a little cold for a traditional Glizzy. Perhaps some Mac'n'Glizzies is in order?";
-  const hotResponse = "OH YOU BETTER BELIEVE THATS PRIME GLIZZY TIME";
+  const hotResponse = "OH YOU BETTER BELIEVE THATS PRIME GLIZZY WEATHER";
   const wetResponse = "Rain or shine - IT'S GLIZZY TIME";
   const nightResponse =
     "It's a little late, champ. Get some rest - there will be plenty of time for Glizzies tomorrow.";
@@ -80,6 +66,8 @@ async function displayData(locationQuery) {
   let response;
   try {
     response = await getWeather(locationQuery);
+    // Hide Form:
+    document.getElementById("formDiv").classList.add("hidden-important");
   } catch (error) {
     document.getElementById("error").style.display = "block";
     return;
@@ -108,7 +96,7 @@ async function displayData(locationQuery) {
     response.current.is_day === 1 &&
     response.current.condition.text.includes("Sunny")
   ) {
-    glizzyResponse.innerText = "Suns out Buns out" + " " + hotResponse;
+    glizzyResponse.innerText = "Suns out Buns out" + " - " + hotResponse;
   }
   if (response.current.is_day === 0) {
     glizzyResponse.innerText = nightResponse;
@@ -156,20 +144,26 @@ function showError(error) {
 
 /////////////////////Chatbot////////////////////////
 
-// Assign a click event listener to send icon & keydown: enter
-document.querySelector(".send-icon").addEventListener("click", sendReceive);
-prompt.addEventListener("keydown", (event) => {
-  if (event.key === "Enter"){
-    sendReceive()
-    prompt.value = ""
-  }
-})
+if (chatBox){
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
 
+// Assign a click event listener to send icon & keydown: enter
+if (sendIt || prompt) {
+  sendIt.addEventListener("click", sendReceive, (prompt.value = ""));
+  prompt.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      sendReceive();
+      prompt.value = "";
+    }
+  });
+}
 /** Send message and handle response
  *
  */
 function sendReceive() {
   let message = document.getElementById("prompt").value;
+  prompt.value = "";
   console.log(message); // Log the message to the console
   createOutgoingMessageHTML(message);
 
@@ -183,7 +177,7 @@ async function chat(prompt) {
   let res;
   try {
     res = await fetch(`https://weatherapiproxy.onrender.com/chat?`, {
-    // res = await fetch(`http://127.0.0.1:5001/chat`, {
+      // res = await fetch(`http://127.0.0.1:5001/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
