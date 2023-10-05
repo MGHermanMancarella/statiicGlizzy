@@ -140,6 +140,7 @@ h1,
     'Segoe UI Symbol', 'Noto Color Emoji';
   font-weight: 500;
   line-height: 1.2;
+  z-index: 4;
 }
 
 h1,
@@ -679,7 +680,6 @@ progress {
 #container {
   justify-content: space-around;
   width: 100%;
-  
 }
 @media (min-width: 576px) {
   .container-sm,
@@ -11280,6 +11280,7 @@ p {
   .about-heading .about-heading-img {
     position: relative;
     z-index: 0;
+    size: 59%;
   }
   .about-heading .about-heading-content {
     margin-top: -5rem;
@@ -11419,6 +11420,32 @@ img {
   opacity: 1; /* Show the tooltip when container is hovered */
 }
 
+/* ABOUT PAGE */
+
+#aboutContainer, #HBGContainer, #formDiv {
+  position: relative;
+  height: auto;
+}
+
+.container > .backgroundGlizzy, #glimage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  opacity: .1;
+  width: 800%; 
+  height: 100%;
+  object-fit: cover; 
+}
+/* #glimage {
+  opacity: .8;
+} */
+input {
+  z-index: 3;
+}
+/* CHATBOT STYLING */
+
 /* #glimage {
   background:
   url(/assets/img/gotThatDogInEm.png) center/cover;
@@ -11450,7 +11477,7 @@ img {
   }
 }
 
-img {
+.received-chats-img > img {
   width: 50px;
   vertical-align: middle;
   border-style: none;
@@ -11521,10 +11548,10 @@ img {
 
 /* Styling the msg-bottom container */
 .msg-bottom {
-  display:flex;
+  display: flex;
   justify-content: end;
   border-top: 1px solid black;
-  position:sticky;
+  position: sticky;
   height: 11%;
 }
 
@@ -11596,7 +11623,7 @@ input:focus {
 
 /* Incoming / Received messages  */
 
-.received-chats{
+.received-chats {
   overflow: hidden;
   display: flex;
 }
@@ -11634,12 +11661,18 @@ p {
 .outgoing-chats {
   overflow: hidden;
   display: flex;
-  flex-direction: row-reverse
+  flex-direction: row-reverse;
 }
 
 .outgoing-chats-msg p {
   background-color: #3a12ff;
-  background-image: linear-gradient(    45deg,    #e6a757 0%,    #7c462b 25%,    #faad14 50%,    #a10000 75%,    #76ff00 100%  
+  background-image: linear-gradient(
+    45deg,
+    #e6a757 0%,
+    #7c462b 25%,
+    #faad14 50%,
+    #a10000 75%,
+    #76ff00 100%
   );
   color: #fff;
   border-radius: 10px;
@@ -11662,12 +11695,11 @@ p {
 }
 
 /* Chat Images */
-.received-chats-img, .outgoing-chats-img  { 
+.received-chats-img,
+.outgoing-chats-img {
   width: 50px;
   padding-top: 1.2rem;
-
 }
-
 
 @media only screen and (max-device-width: 450px) {
   .received-chats-img > img {
@@ -11678,11 +11710,10 @@ p {
   }
 
   .received-msg-inbox p {
-  width: 110%;
-
+    width: 110%;
   }
   .outgoing-chats-msg p {
-  width: 100%;
+    width: 100%;
   }
 }
 /* 
