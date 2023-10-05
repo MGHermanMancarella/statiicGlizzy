@@ -2,6 +2,7 @@
 
 const glizzyResponse = document.getElementById("glizzyResponse");
 let chatBox = document.getElementById("msg-page");
+let prompt = document.getElementById("prompt")
 
 /*!
  * Start Bootstrap - Business Casual v7.0.9 (https://startbootstrap.com/theme/business-casual)
@@ -155,24 +156,34 @@ function showError(error) {
 
 /////////////////////Chatbot////////////////////////
 
-// Assign a click event listener to the icon
-document.querySelector('.send-icon').addEventListener('click', function() {
-  let message = document.getElementById('prompt').value;
-  console.log(message);  // Log the message to the console
-  createOutgoingMessageHTML(message)
+// Assign a click event listener to send icon & keydown: enter
+document.querySelector(".send-icon").addEventListener("click", sendReceive);
+prompt.addEventListener("keydown", (event) => {
+  if (event.key === "Enter"){
+    sendReceive()
+    prompt.value = ""
+  }
+})
+
+/** Send message and handle response
+ *
+ */
+function sendReceive() {
+  let message = document.getElementById("prompt").value;
+  console.log(message); // Log the message to the console
+  createOutgoingMessageHTML(message);
 
   chat(message).then((resp) => {
     console.log(resp.Glizzy_Bot);
-  createResponseMessageHTML(resp.Glizzy_Bot)}
-)
-})
-
+    createResponseMessageHTML(resp.Glizzy_Bot);
+  });
+}
 
 async function chat(prompt) {
   let res;
   try {
     // res = await fetch(`https://weatherapiproxy.onrender.com/chat?`, {
-      res = await fetch(`http://127.0.0.1:5001/chat`, {
+    res = await fetch(`http://127.0.0.1:5001/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -229,10 +240,9 @@ function createResponseMessageHTML(message) {
   receivedChatsDiv.appendChild(messageDiv);
 
   // Append the main div to the body or another container element
-  console.log(receivedChatsDiv);
   chatBox.appendChild(receivedChatsDiv);
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
-
 
 function createOutgoingMessageHTML(message) {
   // Create the main div element
@@ -272,6 +282,5 @@ function createOutgoingMessageHTML(message) {
 
   // Append the main div to the body or another container element
   chatBox.appendChild(outgoingChatsDiv);
-  console.log(outgoingChatsDiv)
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
-

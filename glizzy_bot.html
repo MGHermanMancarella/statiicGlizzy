@@ -46,84 +46,59 @@
         </div>
     </nav>
 
-    <div class="container d-flex" id="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded d-flex rounded" id="glimage">
-                    <h2 class="section-heading mb-0 ">
+    <div class="product-item-title d-flex container" id="container">
+        <div class="bg-faded d-flex rounded" id="glimage">
+            <section>
 
-                        <div class="container">
-                            <!-- msg-header section starts -->
-                            <!-- <div class="msg-header">
-                                <div class="container1">
-                                    <img src="./assets/img/chat/Chimkin.png" class="msgimg" />
-                                    <div class="active">
-                                        <p>User </p>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- msg-header section ends -->
+                <div class="container chat-page">
 
-                            <!-- Chat inbox  -->
-                            <div class="chat-page">
-                                <div class="msg-inbox">
-                                    <div class="chats">
-                                        <!-- Message container -->
-                                        <div class="msg-page" id="msg-page">
-                                            
-                                            <!-- Incoming messages -->
+                    <!-- Here Be The Chat  -->
+                    <div class="pt-5">
+                        <div class="msg-inbox">
+                            <div class="chats msg-page " id="msg-page">
 
-                                            
-
-                                    <!-- msg-bottom section -->
-
-                                    <div class="msg-bottom">
-                                        <div class="input-group mb-3" >
-                                            <input type="text" class="form-control" placeholder="Write message..." id="prompt"/>
-
-                                            <span class="input-group-text send-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
-                                                </svg>
-                                            </span>
+                                <!-- Incoming / Outgoing messages append here -->
+                                
+                                <div class="received-chats">
+                                    <span class="received-chats-img"><img src="./assets/img/chat/Dawg.png"></span>
+                                    <div class="received-msg">
+                                        <div class="received-msg-inbox">
+                                            <p>Howdy! I'm an OpenAI powered Chatbot. Is this the best way to utilize the power of AI? No! 
+                                            </p>
+                                                <p>Is it entertaining? It is for the guy who wrote this silly hotdog website.</p>
+                                            <p>Ask me anything!</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                                <!-- Incoming / Outgoing messages append here -->
 
+                            <div class="msg-bottom">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Write message..."
+                                        id="prompt" />
 
-                        <!-- <form id="chatForm" method="POST" action="/chat">
-                            <div class="form-group">
-                                <label class="section-heading-upper">Lonely? Chat with our bespoke glizzy bot!</label>
-                                <input type="text" class="form-control" id="locationQuery" placeholder="">
+                                    <span class="input-group-text send-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                            <path
+                                                d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                                        </svg>
+                                    </span>
+                                </div>
                             </div>
-                            <input type="submit" value="Send" class="btn btn-info btn-block">
-                            <div class="tooltip-container">
-                                <p id="demo"></p>
-                        </form> -->
-
-
-                        <div style="display: none" class="section-heading-upper" id="error">Uh Oh! Something went wrong
-                            and we couldn't fetch data the correctly. Please Try again
                         </div>
-                        <span style="display: none" id="youin" class="section-heading-upper">You are currently in
-                        </span>
-                        <span class="section-heading-lower" id="location"></span>
-                    </h2>
-                </div>
-            </div>
-
-            <div class="product-item-description d-flex m-auto">
-                <div id="glizzyLand" style="display: none" class="bg-faded p-5 rounded">
-                    <p class="mb-0" id="glizzySituation"></p>
-                    <p class="mb-0" id="glizzyResponse"></p>
-                </div>
-
-            </div>
+                    </div>
+            </section>
         </div>
+    </div>
+
+    <div class="product-item-description d-flex m-auto">
+        <div id="glizzyLand" style="display: none" class="bg-faded p-5 rounded">
+            <p class="mb-0" id="glizzySituation"></p>
+            <p class="mb-0" id="glizzyResponse"></p>
+        </div>
+
     </div>
 
 
@@ -132,6 +107,8 @@
         <div class="container">
             <p class="m-0 small">Copyright &copy; IsItGlizzyWeather.site 2023</p>Powered by <a
                 href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a>
+                &
+                <a href="https://openai.com/">OpenAI</a>
         </div>
     </footer>
     <!-- Bootstrap core JS-->

@@ -671,26 +671,33 @@ progress {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * 0.5);
-  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  /* padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5); */
   margin-right: auto;
   margin-left: auto;
 }
 #container {
   justify-content: space-around;
+  width: 100%;
   
 }
 @media (min-width: 576px) {
   .container-sm,
-  .container {
-    max-width: 540px;
+  .container,
+  .container-fluid {
+    max-width: 100%;
+    border: 0;
+    padding: 0;
   }
 }
 @media (min-width: 768px) {
   .container-md,
   .container-sm,
-  .container {
-    max-width: 720px;
+  .container,
+  .container-fluid {
+    max-width: 100%;
+    border: 0;
+    padding: 0;
   }
 }
 @media (min-width: 992px) {
@@ -699,6 +706,8 @@ progress {
   .container-sm,
   .container {
     max-width: 960px;
+    border: 0;
+    padding: 0;
   }
 }
 @media (min-width: 1200px) {
@@ -11410,10 +11419,10 @@ img {
   opacity: 1; /* Show the tooltip when container is hovered */
 }
 
-#glimage {
-  /* background:
-  url(/staticGlizzy/assets/img/gotThatDogInEm.png) center/cover; */
-}
+/* #glimage {
+  background:
+  url(/assets/img/gotThatDogInEm.png) center/cover;
+} */
 
 #chat {
   max-width: 80vh;
@@ -11429,11 +11438,16 @@ img {
 
 /* Styling the main container */
 .container {
-  width: 80%;
+  width: 95%;
   margin: auto;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   letter-spacing: 0.5px;
   height: 80%;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 95% !important;
+  }
 }
 
 img {
@@ -11489,24 +11503,28 @@ img {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
+@media screen and (min-width: 768px) {
+  .chat-page .pt-5 .msg-inbox {
+    width: 95% !important;
+  }
+}
 
 .chats {
-  padding: 30px 15px 0 25px;
+  padding: 10px 15px 0 25px;
 }
 
 .msg-page {
   max-height: 40vh;
   overflow-y: auto;
-  min-width: 80vw;
 }
 
 /* Styling the msg-bottom container */
 .msg-bottom {
-  justify-content: center;
+  display:flex;
+  justify-content: end;
   border-top: 1px solid black;
-  position: relative;
+  position:sticky;
   height: 11%;
-  background-color: rgb(239 239 239);
 }
 
 /* Styling the input field */
@@ -11576,22 +11594,24 @@ input:focus {
 }
 
 /* Incoming / Received messages  */
-.received-chats-img {
-  display: inline;
-  width: 50px;
-  float: left;
+
+.received-chats{
+  overflow: hidden;
+  display: flex;
 }
 
 .received-msg {
-  display: inline-block;
+  display: flex;
+  align-items: flex-start;
   padding: 0 0 0 10px;
   vertical-align: top;
   margin-left: 0;
   margin-top: 20px;
   width: 92%;
 }
+
 .received-msg-inbox {
-  width: 70%;
+  width: 80%;
   padding-left: 00px;
   margin-left: -1rem;
 }
@@ -11610,42 +11630,61 @@ p {
   overflow-wrap: break-word;
 }
 
-/* Outgoing messages */
-.outgoing-chats-img {
-  display: inline;
-  width: 50px;
-  float: right;
-}
-
 .outgoing-chats {
   overflow: hidden;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: row-reverse
 }
 
-.outgoing-chats-msg p {
+.outgoing-msg-inbox p {
   background-color: #3a12ff;
-  background-image: linear-gradient(
-    45deg,
-    #ee087f 0%,
-    #dd2a7b 25%,
-    #9858ac 50%,
-    #8134af 75%,
-    #515bd4 100%
+  background-image: linear-gradient(    45deg,    #e6a757 0%,    #7c462b 25%,    #faad14 50%,    #a10000 75%,    #76ff00 100%  
   );
   color: #fff;
   border-radius: 10px;
   font-size: 14px;
   color: #fff;
-  padding: 5px 10px 5px 12px;
+  padding: 5px 10px 0px 12px;
   width: 100%;
-  padding: 1rem;
+  padding: 0.75rem;
   box-shadow: rgb(0 0 0 / 25%) 0px 2px 5px 2px;
 }
-.outgoing-chats-msg {
-  float: right;
-  width: 70%;
+
+.outgoing-msg {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 0 0 0 10px;
+  vertical-align: top;
+  margin-left: 0;
+  margin-top: 20px;
+  width: 92%;
 }
 
+/* Chat Images */
+.received-chats-img, .outgoing-chats-img  { 
+  width: 50px;
+  padding-top: 1.2rem;
+
+}
+
+
+@media only screen and (max-device-width: 450px) {
+  .received-chats-img > img {
+    width: 100px;
+  }
+  .msg-header {
+    height: 5%;
+  }
+
+  .received-msg-inbox p {
+  width: 110%;
+
+  }
+  .outgoing-chats-msg p {
+  width: 100%;
+  }
+}
+/* 
 @media only screen and (max-device-width: 850px) {
   *,
   .time {
@@ -11691,4 +11730,5 @@ p {
   width: 70%;
   font-size: 22px;
   }
-}
+} */
+
