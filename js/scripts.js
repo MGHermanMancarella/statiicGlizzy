@@ -55,8 +55,8 @@ async function getWeather(locationQuery) {
   let res;
   try {
     res = await fetch(
-      // `https://weatherapiproxy.onrender.com?locationQuery=${locationQuery}`
-      `http://127.0.0.1:5001?locationQuery=${locationQuery}`
+      `https://weatherapiproxy.onrender.com?locationQuery=${locationQuery}`
+      // `http://127.0.0.1:5001?locationQuery=${locationQuery}`
     );
   } catch (error) {
     locationForm.style.display = "block";
@@ -182,8 +182,8 @@ function sendReceive() {
 async function chat(prompt) {
   let res;
   try {
-    // res = await fetch(`https://weatherapiproxy.onrender.com/chat?`, {
-    res = await fetch(`http://127.0.0.1:5001/chat`, {
+    res = await fetch(`https://weatherapiproxy.onrender.com/chat?`, {
+    // res = await fetch(`http://127.0.0.1:5001/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
