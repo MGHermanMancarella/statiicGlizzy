@@ -1,10 +1,20 @@
 "use strict";
 
+//chat questions and response variables
+import * as chatbotQsAndRs from "./chatResponses.js";
+
 const glizzyResponse = document.getElementById("glizzyResponse");
 const sendIt = document.querySelector(".send-icon");
 const chatBox = document.getElementById("msg-page");
 const prompt = document.getElementById("prompt");
 const locationForm = document.getElementById("locationForm");
+const marriageBtn = document.getElementById("marriageBtn");
+const WWIIBtn = document.getElementById("WWIIBtn");
+const sandwichBtn = document.getElementById("sandwichBtn");
+const wetWaterBtn = document.getElementById("wetWaterBtn");
+const foolsBtn = document.getElementById("foolsBtn");
+
+const suggestions = [marriageBtn, WWIIBtn, sandwichBtn, wetWaterBtn, foolsBtn];
 
 /*!
  * Start Bootstrap - Business Casual v7.0.9 (https://startbootstrap.com/theme/business-casual)
@@ -142,10 +152,34 @@ function showError(error) {
   }
 }
 
-/////////////////////Chatbot////////////////////////
+////////////////////////////////// Chatbot //////////////////////////////////
 
-if (chatBox){
+if (chatBox) {
   chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Assign event listener to suggested question buttons:
+if (sendIt || prompt) {
+  suggestions.forEach(function (btn) {
+    btn.addEventListener("click", function (event) {
+      let responseDivId = event.target.id.slice(0, -3);
+      let questionDivId = responseDivId + "Q";
+      const question = document.createElement("div");
+      question.innerHTML = chatbotQsAndRs[questionDivId];
+      const response = document.createElement("div");
+      response.innerHTML = chatbotQsAndRs[responseDivId];
+      // console.log('question', question)
+      // console.log('response-', response)
+      setTimeout(() => {
+        chatBox.appendChild(question);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 500);
+      setTimeout(() => {
+        chatBox.appendChild(response);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 2000);
+    });
+  });
 }
 
 // Assign a click event listener to send icon & keydown: enter
@@ -164,11 +198,11 @@ if (sendIt || prompt) {
 function sendReceive() {
   let message = document.getElementById("prompt").value;
   prompt.value = "";
-  console.log(message); // Log the message to the console
+  // console.log(message); // Log the message to the console
   createOutgoingMessageHTML(message);
 
   chat(message).then((resp) => {
-    console.log(resp.Glizzy_Bot);
+    // console.log(resp.Glizzy_Bot);
     createResponseMessageHTML(resp.Glizzy_Bot);
   });
 }
